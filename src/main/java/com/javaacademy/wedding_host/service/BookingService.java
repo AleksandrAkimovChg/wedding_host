@@ -29,7 +29,7 @@ public class BookingService {
      * Сохраняет новое бронирование
      */
     public void createBooking(BookingDtoReq bookingDto) {
-        bookingRepository.save(mapper.convertToBooking(bookingDto, true));
+        bookingRepository.save(mapper.convertToBooking(bookingDto));
     }
 
     /**

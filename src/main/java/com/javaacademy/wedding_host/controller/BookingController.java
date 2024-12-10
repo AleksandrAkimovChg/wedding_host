@@ -22,6 +22,7 @@ import java.util.List;
 @RequestMapping("/booking")
 @Slf4j
 @RequiredArgsConstructor
+@CrossOrigin
 public class BookingController {
     private final BookingService bookingService;
 
@@ -29,7 +30,6 @@ public class BookingController {
      * Данные о бронированиях за этот месяц
      */
     @GetMapping("/month/{monthNumber}")
-    @CrossOrigin
     public List<BookingMonthDtoRes> getBookingMonth(@PathVariable Integer monthNumber) {
         log.debug("/month/{monthNumber} input: {}", monthNumber);
         return bookingService.getBookedDaysInMonth(monthNumber);
@@ -39,7 +39,6 @@ public class BookingController {
      * Новое бронирование
      */
     @PostMapping
-    @CrossOrigin
     @ResponseStatus(code = HttpStatus.CREATED)
     public void booking(@RequestBody BookingDtoReq bookingDto) {
         log.debug("bookingDto input: {}", bookingDto);
@@ -50,7 +49,6 @@ public class BookingController {
      * Количество забронированных дней за этот выбранный месяц
      */
     @GetMapping("/month/{monthNumber}/free")
-    @CrossOrigin
     public MonthCountDtoRes getCountBookedDaysInMonth(@PathVariable Integer monthNumber) {
         log.debug("/month/{monthNumber}/free input: {}", monthNumber);
         return bookingService.countBookedDaysInMonth(monthNumber);

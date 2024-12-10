@@ -13,8 +13,8 @@ public class BookingMapper {
         return new BookingMonthDtoRes(booking.getMonthNumber(), booking.getDayNumber(), booking.getIsBooked());
     }
 
-    public Booking convertToBooking(BookingDtoReq bookingDtoReq, boolean isBooked) {
-        return new Booking(bookingDtoReq.getMonth(), bookingDtoReq.getDay(), isBooked);
+    public Booking convertToBooking(BookingDtoReq bookingDtoReq) {
+        return new Booking(bookingDtoReq.getMonth(), bookingDtoReq.getDay(), true);
     }
 
     public MonthCountDtoRes convertToMonthCountDtoRes(int count) {
