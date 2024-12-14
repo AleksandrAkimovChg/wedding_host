@@ -1,8 +1,8 @@
 package com.javaacademy.wedding_host.mapper;
 
-import com.javaacademy.wedding_host.dto.BookingDtoRq;
-import com.javaacademy.wedding_host.dto.BookingMonthDtoRs;
-import com.javaacademy.wedding_host.dto.MonthCountDtoRs;
+import com.javaacademy.wedding_host.dto.BookingDtoReq;
+import com.javaacademy.wedding_host.dto.BookingMonthDtoRes;
+import com.javaacademy.wedding_host.dto.MonthCountDtoRes;
 import com.javaacademy.wedding_host.model.Booking;
 import org.springframework.stereotype.Service;
 
