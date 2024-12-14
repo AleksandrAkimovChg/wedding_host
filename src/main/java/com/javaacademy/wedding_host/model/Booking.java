@@ -10,11 +10,11 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Booking {
     private UUID uuid;
-    private int monthNumber;
-    private int dayNumber;
+    private Integer monthNumber;
+    private Integer dayNumber;
     private Boolean isBooked;
 
-    public Booking(@NonNull int monthNumber, @NonNull int dayNumber, Boolean isBooked) {
+    public Booking(@NonNull Integer monthNumber, @NonNull Integer dayNumber, Boolean isBooked) {
         this.monthNumber = monthNumber;
         this.dayNumber = dayNumber;
         this.isBooked = isBooked;

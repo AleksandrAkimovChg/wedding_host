@@ -1,8 +1,8 @@
 package com.javaacademy.wedding_host.controller;
 
-import com.javaacademy.wedding_host.dto.BookingDtoReq;
-import com.javaacademy.wedding_host.dto.BookingMonthDtoRes;
-import com.javaacademy.wedding_host.dto.MonthCountDtoRes;
+import com.javaacademy.wedding_host.dto.BookingDtoRq;
+import com.javaacademy.wedding_host.dto.BookingMonthDtoRs;
+import com.javaacademy.wedding_host.dto.MonthCountDtoRs;
 import com.javaacademy.wedding_host.service.BookingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +22,7 @@ import java.util.List;
 @RequestMapping("/booking")
 @Slf4j
 @RequiredArgsConstructor
+@CrossOrigin
 public class BookingController {
     private final BookingService bookingService;
 
@@ -29,8 +30,7 @@ public class BookingController {
      * Данные о бронированиях за этот месяц
      */
     @GetMapping("/month/{monthNumber}")
-    @CrossOrigin
-    public List<BookingMonthDtoRes> getBookingMonth(@PathVariable Integer monthNumber) {
+    public List<BookingMonthDtoRs> getBookingMonth(@PathVariable Integer monthNumber) {
         log.debug("/month/{monthNumber} input: {}", monthNumber);
         return bookingService.getBookedDaysInMonth(monthNumber);
     }
@@ -39,9 +39,8 @@ public class BookingController {
      * Новое бронирование
      */
     @PostMapping
-    @CrossOrigin
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void booking(@RequestBody BookingDtoReq bookingDto) {
+    public void booking(@RequestBody BookingDtoRq bookingDto) {
         log.debug("bookingDto input: {}", bookingDto);
         bookingService.createBooking(bookingDto);
     }
@@ -50,8 +49,7 @@ public class BookingController {
      * Количество забронированных дней за этот выбранный месяц
      */
     @GetMapping("/month/{monthNumber}/free")
-    @CrossOrigin
-    public MonthCountDtoRes getCountBookedDaysInMonth(@PathVariable Integer monthNumber) {
+    public MonthCountDtoRs getCountBookedDaysInMonth(@PathVariable Integer monthNumber) {
         log.debug("/month/{monthNumber}/free input: {}", monthNumber);
         return bookingService.countBookedDaysInMonth(monthNumber);
     }

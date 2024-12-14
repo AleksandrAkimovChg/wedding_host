@@ -5,10 +5,8 @@ import com.javaacademy.wedding_host.storage.BookingStorage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.function.Predicate;
 
 @Component
 @RequiredArgsConstructor
@@ -27,7 +25,7 @@ public class BookingRepository {
      * Сохранения бронирования
      */
     public void save(Booking booking) {
-        if (isDayBooked(booking)) {
+        if (isDayBooked(booking.getMonthNumber(), booking.getDayNumber())) {
             throw new RuntimeException("День уже забронирован");
         }
         booking.setUuid(UUID.randomUUID());
@@ -37,17 +35,8 @@ public class BookingRepository {
     /**
      * Проверка дня бронирования
      */
-    private boolean isDayBooked(Booking booking) {
-        return storage.getData().values().stream().anyMatch(getCombinedPredicate(booking));
-    }
-
-    /**
-     * Получение предиката бронирования по дню месяца
-     */
-    private Predicate<Booking> getCombinedPredicate(Booking booking) {
-        List<Predicate<Booking>> predicates = new ArrayList<>();
-        predicates.add(e -> e.getMonthNumber() == booking.getMonthNumber());
-        predicates.add(e -> e.getDayNumber() == booking.getDayNumber());
-        return predicates.stream().reduce(Predicate::and).orElse(e -> false);
+    private boolean isDayBooked(Integer month, Integer day) {
+        return storage.getData().values().stream()
+                .anyMatch(e -> e.getMonthNumber() == month && e.getDayNumber() == day);
     }
 }

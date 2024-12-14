@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class BookingMonthDtoRes {
-    private int monthNumber;
-    private int dayNumber;
+public class BookingMonthDtoRs {
+    private Integer monthNumber;
+    private Integer dayNumber;
     private Boolean booked;
 }

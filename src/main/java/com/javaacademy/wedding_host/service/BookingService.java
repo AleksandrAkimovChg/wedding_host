@@ -1,8 +1,8 @@
 package com.javaacademy.wedding_host.service;
 
-import com.javaacademy.wedding_host.dto.BookingDtoReq;
-import com.javaacademy.wedding_host.dto.BookingMonthDtoRes;
-import com.javaacademy.wedding_host.dto.MonthCountDtoRes;
+import com.javaacademy.wedding_host.dto.BookingDtoRq;
+import com.javaacademy.wedding_host.dto.BookingMonthDtoRs;
+import com.javaacademy.wedding_host.dto.MonthCountDtoRs;
 import com.javaacademy.wedding_host.mapper.BookingMapper;
 import com.javaacademy.wedding_host.repository.BookingRepository;
 import lombok.NonNull;
@@ -20,7 +20,7 @@ public class BookingService {
     /**
      * Возвращает для фронта список всех бронирований
      */
-    public List<BookingMonthDtoRes> getBookedDaysInMonth(@NonNull Integer month) {
+    public List<BookingMonthDtoRs> getBookedDaysInMonth(@NonNull Integer month) {
         return bookingRepository.getBookingDaysInMonth(month).stream()
                 .map(mapper::convertToBookingMonthDto).toList();
     }
@@ -28,14 +28,14 @@ public class BookingService {
     /**
      * Сохраняет новое бронирование
      */
-    public void createBooking(BookingDtoReq bookingDto) {
-        bookingRepository.save(mapper.convertToBooking(bookingDto, true));
+    public void createBooking(BookingDtoRq bookingDto) {
+        bookingRepository.save(mapper.convertToBooking(bookingDto, false));
     }
 
     /**
      * Возвращает для фронта количество всех бронирований
      */
-    public MonthCountDtoRes countBookedDaysInMonth(Integer month) {
+    public MonthCountDtoRs countBookedDaysInMonth(Integer month) {
         return mapper.convertToMonthCountDtoRes(bookingRepository.getBookingDaysInMonth(month).size());
     }
 }

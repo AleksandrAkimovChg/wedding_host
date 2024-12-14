@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class MonthCountDtoRes {
-    private int count;
+public class MonthCountDtoRs {
+    private Integer count;
 }

@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class BookingDtoReq {
-    private int month;
-    private int day;
+public class BookingDtoRq {
+    private Integer month;
+    private Integer day;
 }
